@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import xgboost as xgb
+
 import pickle
 
 # Load the trained model
