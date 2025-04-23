@@ -4,7 +4,7 @@ import xgboost as xgb
 import pickle
 
 # Load the trained model
-model_path = 'D:/test/maniSir/xgb_brick_strength_model.pkl'
+model_path = 'xgb_brick_strength_model.pkl'  # Change this to the correct model path if necessary
 model = pickle.load(open(model_path, 'rb'))
 
 # Function to make predictions
