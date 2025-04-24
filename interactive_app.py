@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # 🎯 Load the Trained Model
-model_path = "xgb_brick_strength_model.pkl"  # Update with the correct model path
+model_path = "xgb_brick_strength_model_v2.pkl"  # Update with the correct model path
 model = joblib.load(model_path)
 
 # 🎨 Streamlit UI Configuration
