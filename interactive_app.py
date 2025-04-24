@@ -26,6 +26,15 @@ load = st.number_input("Load (kg)", min_value=0.0, max_value=100.0, value=5.0)
 area = st.number_input("Area (cm²)", min_value=0.0, max_value=1000.0, value=50.0)
 
 # -------------------------------------------
+# 🧮 Show Total Mix Percentages for Feedback
+# -------------------------------------------
+binder_total = cement + iron_ore
+fines_total = fine_aggregate + wfs
+
+st.markdown(f"**🧱 Total Binder (Cement + Iron Ore):** `{binder_total:.2f}%` / 100%")
+st.markdown(f"**🧱 Total Fines (Fine Aggregate + WFS):** `{fines_total:.2f}%` / 100%")
+
+# -------------------------------------------
 # 📊 Collect Input Data into Dictionary
 # -------------------------------------------
 input_data = {
@@ -47,9 +56,15 @@ input_df = pd.DataFrame([input_data])
 # -------------------------------------------
 if st.button("🔮 Predict Strength"):
     try:
-        # Make Prediction
-        predicted_strength = model.predict(input_df)[0]
-        st.success(f"✅ Predicted Compressive Strength: **{predicted_strength:.2f} N/mm²**")
+        # Validation: Check if binder and fines totals are within 100%
+        if binder_total > 100.0:
+            st.warning("⚠️ The sum of Cement (%) and Iron Ore (%) should not exceed 100%.")
+        elif fines_total > 100.0:
+            st.warning("⚠️ The sum of Fine Aggregate (%) and WFS (%) should not exceed 100%.")
+        else:
+            # Make Prediction
+            predicted_strength = model.predict(input_df)[0]
+            st.success(f"✅ Predicted Compressive Strength: **{predicted_strength:.2f} N/mm²**")
     except Exception as e:
         st.error(f"❌ Error occurred while predicting: {e}")
 
