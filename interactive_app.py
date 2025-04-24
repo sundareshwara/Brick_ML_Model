@@ -6,7 +6,7 @@ import joblib
 # -------------------------------------------
 # 🎯 Load the Trained Model
 # -------------------------------------------
-model_path = r"D:\test\maniSir\xgb_brick_strength_model.pkl"  # Update with the correct model path
+model_path = r"xgb_brick_strength_model.pkl"  # Update with the correct model path
 model = joblib.load(model_path)
 
 # -------------------------------------------
